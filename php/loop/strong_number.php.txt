@@ -1,0 +1,34 @@
+<?php
+// Program to check if a given number is a strong number in PHP
+
+echo "Enter a number: ";
+$input = trim(fgets(STDIN));
+
+if (!is_numeric($input) || $input < 0) {
+    echo "Please enter a valid non-negative number.\n";
+    exit(1);
+}
+
+$number = (int)$input;
+$originalNumber = $number;
+$sumOfFactorials = 0;
+
+while ($number > 0) {
+    $digit = $number % 10;
+
+    // Calculate factorial of the digit
+    $factorial = 1;
+    for ($i = 1; $i <= $digit; $i++) {
+        $factorial *= $i;
+    }
+
+    $sumOfFactorials += $factorial;
+    $number = (int)($number / 10); // Truncate decimal
+}
+
+if ($sumOfFactorials === $originalNumber) {
+    echo "$originalNumber is a strong number.\n";
+} else {
+    echo "$originalNumber is not a strong number.\n";
+}
+?>
